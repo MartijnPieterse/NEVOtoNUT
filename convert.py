@@ -36,7 +36,7 @@ for l in f.readlines():
         code = l[0:5]
 
         if nutrient_list[code]["unit"] == "%":
-            # Convert to "g"
+            # Convert to "g" later.
             conversion_table.append(code)
         elif nutrient_list[code]["unit"] != v_unit:
             raise "Unit Error"
@@ -92,7 +92,7 @@ def printFoodRecord(r):
                 if total != 0.0: 
                     s += ("%.3f" % (total)).rstrip("0").rstrip(".")
 
-            if t[1] == "2": # Simple multiplication
+            elif t[1] == "2": # Simple multiplication
                 calc = t[3:].split("*")
 
                 total = 0.0
@@ -103,7 +103,7 @@ def printFoodRecord(r):
                 if total != 0.0:
                     s += ("%.3f" % (total)).rstrip("0").rstrip(".")
 
-            if t[1] == "3": # multiple multiply/add
+            elif t[1] == "3": # multiple multiply/add
                 calc = t[3:].split("+")
 
                 total = 0.0
@@ -115,11 +115,33 @@ def printFoodRecord(r):
 
                     total += n * multiply
 
-                print r["Product_omschrijving"], "VitA_IU", total
+                if total != 0.0:
+                    s += ("%.3f" % (total)).rstrip("0").rstrip(".")
 
+            elif t[1] == "5": # take % of 03002
+                nut_key = t[3:8]
+
+                total = 0.0
+                if r["nut"].has_key(nut_key):
+                    perc = float(r["nut"][nut_key])
+
+                    total = perc * float(r["nut"]["03002"])
 
                 if total != 0.0:
                     s += ("%.3f" % (total)).rstrip("0").rstrip(".")
+
+            elif t[1] == "6": # Simple addition
+                calc = t[3:].split("+")
+                
+                # TODO What if something is not available?
+                perc = 0.0
+                for c in calc:
+                    if r["nut"].has_key(c): perc += float(r["nut"][c])
+
+                if perc != 0.0: 
+                    total = perc * float(r["nut"]["03002"])
+                    s += ("%.3f" % (total)).rstrip("0").rstrip(".")
+
 
 
         elif r["nut"].has_key(t):

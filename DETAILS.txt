@@ -14,6 +14,28 @@ are a bit more cryptic.
 nut.txt is meant to be the complete converstion.
 nutlight.txt is meant to be for P/C/F only. (It was a quick-hack to get started.)
 
+About the fatty acids, in the dutch database they are all given as %.
+They are all multiplied by (03002 - Fatty acids total) to get the 
+desired g value. A "%" is added after the code to show this.
+
+
+nut adds a couple of fields.
+1, Code
+2, Groep Code
+3, Text description. Must be in uppercase.
+4, Scienticif name (not used in this conversion)
+5, Edible part (percentage as integer)
+6, Calories / gram of protein
+7, Calories / gram of fat
+8, Calories / gram of carbs
+
+6,7 and 8 are left empty. Nut is able to figure it out.
+
+The last 3 fields are a description of a typical serving:
+last,   Weight of the serving in grams
+last-1, Description of amount (pieces, grams, oz, spoonfulls, etc.)
+last-2, Number of (last-1) that make 1 serving.
+
 ------------------------------------------------------------------------
 PROCNT - Protein
    02002 - Protein total
@@ -28,6 +50,11 @@ CHOCDF - Carbohydrate, by difference
    Note: This is partly wrong. Some water-soluable fiber can be
          converted to fatty acids by gut bacteria. But this information
          is not available in the dutch database.
+
+   Note(2): I'm unsure about this field. (Don't panic)
+            But it seems that fibre (06001) is not part 05001.
+            So i'm keeping it this way.
+            
 ASH - Ash
    12001 - Ash
 ENERC_KCAL - Energy
@@ -50,7 +77,7 @@ WATER - Water
    07001 - Water
 XXXXX - Adjusted Protein
    Not available
-   Note: I don't know what this is.
+   Note: I don't know what adjusted protein is.
 CAFFN - Caffeine
    Not available.
 THEBRN - Theobromine
@@ -206,6 +233,7 @@ FOL - Folate, total
 VITB12 - Vitamin B-12
    11008 - Vitamin B12
 CHOLN - Choline, total
+   Not available.
 MK4 - Menaquinone-4
    Not available.
 VITK1D - Dihydrophylloquinone
@@ -262,80 +290,271 @@ SER_G - Serine
 HYP - Hydroxyproline
    Not available.
 XXX - Vitamin E, added
-   Note: Difference of 11010 and 11015??
+   Note: Could be the difference of 11010 (Vitamin E total) 
+         and 11015 (Alpha-tocoferol)
 XXX - Vitamin B-12, added
    Not available.
 CHOLE - Cholesterol
    04001 - Cholesterol
 FATRN - Fatty acids, total trans
+   03136 - Fatty acids total trans
 FASAT - Fatty acids, total saturated
+   03004 - Fatty acids total saturated
 F4D0 - 4:0
+   03011% - C4:0
 F6D0 - 6:0
+   03012% - C6:0% - C6:0
 F8D0 - 8:0
+   03013% - C8:0
 F10D0 - 10:0
+   03014% - C10:0
 F12D0 - 12:0
+   03017% - C12:0
 F14D0 - 14:0
+   03020% - C14:0
 F16D0 - 16:0
+   03024% - C16:0
 F18D0 - 18:0
+   03029% - C18:0
 F20D0 - 20:0
+   03036% - C20:0
 F18D1 - 18:1 undifferentiated
+   This is the sum of:
+
+   03030% - C18:1 cis total
+   03031% - C18:1 trans total
+   03032% - C18:1 rest
 F18D2 - 18:2 undifferentiated
+   This is the sum of:
+
+   03034% - C18:2 cis trans
+   03052% - C18:2 n-6 cis
+   03057% - C18:2 rest
+   03065% - C18:2 n-6 trans
+   03103% - C18:2 n-9 cis
+   03130% - C18:2 conjugated total
+
+   Note: This includes linoleic acid.
+
 F18D3 - 18:3 undifferentiated
+   This is the sum of:
+
+   03033% - C18:3 n-3 cis (ALA)
+   03062% - C18:3 n-6 cis
+   03131% - C18:3 n-3 trans
 F20D4 - 20:4 undifferentiated
+   This is the sum of:
+
+   03040% - C20:4 n-6 cis
+   03090% - C20:4 n-3 cis
 F22D6 - 22:6 n-3 (DHA)
+   03142 - C22:6 n-3 cis (DHA)
 F22D0 - 22:0
+   03043% - C22:0
 F14D1 - 14:1
+   This is the sum of:
+
+   03021% - C14:1 cis total
+   03022% - C14:1 trans total
 F16D1 - 16:1 undifferentiated
+   This is the sum of:
+
+   03025% - C16:1 cis total
+   03026% - C16:1 trans total
 F18D4 - 18:4
+   03089% - C18:4 n-3 cis
 F20D1 - 20:1
+   This is the sum of:
+
+   03037% - C20:1 cis total
+   03058% - C20:1 trans total
 F20D5 - 20:5 n-3 (EPA)
+   03142 - C20:5 n-3 cis (EPA)
 F22D1 - 22:1 undifferentiated
+   This is the sum of:
+
+   03044% - C22:1 cis total
+   03059% - C22:1 trans total
 F22D5 - 22:5 n-3 (DPA)
+   03048% - C22:5 n-3 cis
 PHYSTR - Phytosterols
+   Not available.
 STID7 - Stigmasterol
+   Not available.
 CAMD5 - Campesterol
+   Not available.
 SITSTR - Beta-sitosterol
+   Not available.
 FAMS - Fatty acids, total monounsaturated
+   03006 - Fatty acids tot mono unsat cis
+
+   Note: Unsure if the addition of "cis" in the dutch database makes
+         any difference. Or that some other mono unsaturated have
+         to be added.
 FAPU - Fatty acids, total polyunsaturated
+   03008 - Fatty acids total poly unsat
 F15D0 - 15:0
+   03023% - C15:0
 F17D0 - 17:0
+   03028% - C17:0
 F24D0 - 24:0
+   03053% - C24:0
 F16D1T - 16:1 t
+   03026% - C16:1 trans total
 F18D1T - 18:1 t
+   03031% - C18:1 trans total
 XXXXXX - 22:1 t
+   03059% - C22:1 trans total
 XXXXXX - 18:2 t not further defined
+   Not available.
 XXXXXX - 18:2 i
+   Not available.
+
+   Note: What is i? See also 18:3i
 F18D2TT - 18:2 t,t
+   Not available.
 F18D2CLA - 18:2 CLAs
+   03130% - C18:2 conjugated total
+
+   Note: This one could be wrong.
 F24D1C - 24:1 c
+   03054% - C24:1 cis total
 F20D2CN6 - 20:2 n-6 c,c
+   03038% - C20:2 n-6 cis
 F16D1C - 16:1 c
+   03025% - C16:1 cis total
 F18D1C - 18:1 c
+   03030% - C18:1 cis total
 F18D2CN6 - 18:2 n-6 c,c
-XXXXXXXX - 22:1 c - 3
+   03009 - Linoleic acid (C18:2(n-6)cis)
+   
+   Note: Not sure if this is really linoleic acid.
+XXXXXXXX - 22:1 c
+   03044% - C22:1 cis total
 F18D3CN6 - 18:3 n-6 c,c,c
+   This is the sum of:
+
+   03033% - C18:3 n-3 cis (ALA)
+   03062% - C18:3 n-6 cis
 F17D1 - 17:1
+   03102% - C17:1 cis
+
+   Note: Only cis available.
 F20D3 - 20:3 undifferentiated
+   This is the sum of:
+
+   03039% - C20:3 n-3 cis
+   03104% - C20:3 n-9 cis
+   03105% - C20:3 n-6 cis
 FATRNM - Fatty acids, total trans-monoenoic
+   Not available.
+
+   Note: Also i have no idea what this should be.
 FATRNP - Fatty acids, total trans-polyenoic
+   Not available.
+
+   Note: Also i have no idea what this should be.
 F13D0 - 13:0
+   03019% - C13:0
 F15D1 - 15:1
+   03100% - C15:1 cis
 F18D3CN3 - 18:3 n-3 c,c,c (ALA)
+   03140 - C18:3 n-3 cis (ALA)
 F20D3N3 - 20:3 n-3
+   03039% - C20:3 n-3 cis
 F20D3N6 - 20:3 n-6
+   03105% - C20:3 n-6 cis
 F20D4N6 - 20:4 n-6
+   03040% - C20:4 n-6 cis
 XXXXXXX - 18:3i
+   Not available.
+   Note: It is unclear what the "i" means...
+         See also 18:2i
 F21D5 - 21:5
+   Not available.
 F22D4 - 22:4
+   03047% - C22:4 n-6 cis
 F18D1TN7 - 18:1-11t (18:1t n-7)
+   03070% - C18:1 n-7 trans
+
+   Note: Unclear why this is a seperate field..
 ------------------------------------------------------------------------
 
 
-Unused fields in from the dutch database:
+Unused fields from the dutch database:
 
 02001  Stikstof totaal                 g         Nitrogen total
 02003  Eiwit plantaardig               g         Protein vegetable
 02004  Eiwit dierlijk                  g         Protein animal
+03010  C2:0                            %         C2:0
+03108  C23:0                           %         C23:0
+03015  C10:1 cis totaal                %         C10:1 cis total
+03016  C11:0                           %         C11:0
+03018  C12:1 cis totaal                %         C12:1 cis total
+03027  C10:1 trans totaal              %         C10:1 trans total
+03035  C19:0                           %         C19:0
+03041  C20:5 n-3 cis (EPA)             %         C20:5 n-3 cis (EPA)
+03042  C21:0                           %         C21:0
+03045  C22:2 n-3 cis                   %         C22:2 n-3 cis
+03046  C22:3 n-3 cis                   %         C22:3 n-3 cis
+03049  C22:6 n-3 cis (DHA)             %         C22:6 n-3 cis (DHA)
+03055  C12:1 trans totaal              %         C12:1 trans total
+03060  C24:1 trans totaal              %         C24:1 trans total
+03061  Niet-geidentificeerde vetzuren  %         Fatty acids unidentified
+03063  C16:1 n-7 trans                 %         C16:1 n-7 trans
+03064  C16:1 n-7 cis                   %         C16:1 n-7 cis
+03067  C18:1 n-12 trans                %         C18:1 n-12 trans
+03068  C18:1 n-9 trans                 %         C18:1 n-9 trans
+03069  C18:1 n-8 trans                 %         C18:1 n-8 trans
+03071  C18:1 n-12 cis                  %         C18:1 n-12 cis
+03072  C18:1 n-9 cis                   %         C18:1 n-9 cis
+03073  C18:1 n-8 cis                   %         C18:1 n-8 cis
+03074  C18:1 n-7 cis                   %         C18:1 n-7 cis
+03075  C18:1 n-6 cis                   %         C18:1 n-6 cis
+03076  C18:1 n-5 cis                   %         C18:1 n-5 cis
+03077  C18:1 n-4 cis                   %         C18:1 n-4 cis
+03106  C22:2 n-6 cis                   %         C22:2 n-6 cis
+03107  C22:5 n-6 cis                   %         C22:5 n-6 cis
+03108  C23:0                           %         C23:0
+03109  C24:2 n-6 cis                   %         C24:2 n-6 cis
+03110  C22:1 n-11                      %         C22:1 n-11
+03111  C22:1 n-9                       %         C22:1 n-9
+03112  Eovz rest c+t                   %         Mufa rest c+t
+03113  Movz rest c+t                   %         Pufa rest c+t
+03114  Verz vetz rest                  %         SFA rest
+03115  Eovz cis rest                   %         Mufa rest cis
+03116  Eovz trans rest                 %         Mufa rest trans
+03117  Movz cis rest                   %         Pufa rest cis
+03120  C18:1 n-11 trans                %         C18:1 n-11 trans
+03121  C18:1 n-10 trans                %         C18:1 n-10 trans
+03122  C18:1 n-6 trans                 %         C18:1 n-6 trans
+03123  C18:1 n-5 trans                 %         C18:1 n-5 trans
+03124  C18:1 n-4 trans                 %         C18:1 n-4 trans
+03125  C18:1 n-3 trans                 %         C18:1 n-3 trans
+03126  C18:1 n-2 trans                 %         C18:1 n-2 trans
+03127  C18:1 n-13 cis                  %         C18:1 n-13 cis
+03128  C18:1 n-11 cis                  %         C18:1 n-11 cis
+03129  C18:1 n-3 cis                   %         C18:1 n-3 cis
+03133  C20:2 n-6 trans                 %         C20:2 n-6 trans
+03134  C25:0                           %         C25:0
+03135  C26:0                           %         C26:0
+03138  Vetzuren n-3 meerv onverz cis   g         Pufa n-3 cis
+03139  Vetzuren n-6 meerv onverz  cis  g         Pufa n-6 cis
+05011  Polyolen totaal                 g         Polyols total
+05012  Lactitol                        g         Lactitol
+05013  Xylitol                         g         Xylitol
+05014  Sorbitol                        g         Sorbitol
+05015  Isomalt                         g         Isomalt
 09004  IJzer haem                      mg        Iron haem
 09005  IJzer non haem                  mg        Iron non haem
+11002  Retinol equivalenten            ug        Retinol equivalents
 11015  Alfa-tocoferol                  mg        Alpha-tocoferol
+11019  25-hydroxy-vitamine D           ug        25-hydroxy-vitamin D
+11025  Beta-caroteen all-trans         ug        Beta-carotene all-trans
+11026  Beta-caroteen cis               ug        Beta-carotene cis
+13006  Organische zuren totaal         g         Organic acid total
+
+Indirectly used fields:
+
+03002  Som van de vetzuren             g         Fatty acids total
+
