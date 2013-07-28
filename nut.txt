@@ -1,0 +1,146 @@
+02002  Eiwit totaal                    g         Protein total
+03001  Vet totaal                      g         Fat total
+05001  Koolhydraten totaal             g         Carbohydrates total
+12001  As                              g         Ash
+01001  Energie                         kcal      Energy
+05010  Polysacchariden totaal          g         Polysaccharides total
+05009  Saccharose                      g         Saccharose
+05003  Glucose                         g         Glucose
+05005  Fructose                        g         Fructose
+05006  Lactose                         g         Lactose
+05008  Maltose                         g         Maltose
+08001  Alcohol totaal                  g         Alcohol total
+07001  Water                           g         Water
+~257~^~g~^~~^~Adjusted Protein~^~2~^~700~
+~262~^~mg~^~CAFFN~^~Caffeine~^~0~^~18300~
+~263~^~mg~^~THEBRN~^~Theobromine~^~0~^~18400~
+01002  Energie                         kJ        Energy
+05002  Mono en disacchariden totaal    g         Mono and disccharides total
+~287~^~g~^~GALS~^~Galactose~^~2~^~2100~
+06001  Voedingsvezel totaal            g         Dietary fibre total
+09001  Calcium                         mg        Calcium
+09003  IJzer totaal                    mg        Iron total
+09008  Magnesium                       mg        Magnesium
+09002  Fosfor                          mg        Phosphorus
+09007  Kalium                          mg        Potassium
+09006  Natrium                         mg        Sodium
+09009  Zink                            mg        Zinc
+10002  Koper                           mg        Copper
+~313~^~µg~^~FLD~^~Fluoride, F~^~1~^~6240~
+~315~^~mg~^~MN~^~Manganese, Mn~^~3~^~6100~
+10001  Selenium                        ug        Selenium
+~318~^~IU~^~VITA_IU~^~Vitamin A, IU~^~0~^~7500~
+11001  Retinol                         ug        Retinol
+11027  Retinol activiteit equiv.(RAE)  ug        Retinol activity equivalents
+11003  Beta-caroteen                   ug        Beta-carotene
+11020  Alfa-caroteen                   ug        Alpha-carotene
+11010  Vitamine E totaal               mg        Vitamin E total
+11009  Vitamine D totaal               ug        Vitamin D total
+~325~^~µg~^~ERGCAL~^~Vitamin D2 (ergocalciferol)~^~1~^~8710~
+~326~^~µg~^~CHOCAL~^~Vitamin D3 (cholecalciferol)~^~1~^~8720~
+~328~^~µg~^~VITD~^~Vitamin D (D2 + D3)~^~1~^~8700~
+11023  Beta-cryptoxanthine             ug        Beta-cryptoxanthin
+11024  Lycopeen                        ug        Lycopene
+!!11021+11022
+11016  Beta-tocoferol                  mg        Beta-tocoferol
+11017  Gamma-tocoferol                 mg        Gamma-tocoferol
+11018  Delta-tocoferol                 mg        Delta-tocoferol
+11011  Vitamine C                      mg        Vitamin C
+~404~^~mg~^~THIA~^~Thiamin~^~3~^~6400~
+~405~^~mg~^~RIBF~^~Riboflavin~^~3~^~6500~
+11014  Nicotinezuur                    mg        Niacin
+~410~^~mg~^~PANTAC~^~Pantothenic acid~^~3~^~6700~
+11007  Vitamine B6 totaal              mg        Vitamin B6 total
+11012  Folaat                          ug        Folates
+11008  Vitamine B12                    ug        Vitamin B12
+~421~^~mg~^~CHOLN~^~Choline, total~^~1~^~7220~
+~428~^~µg~^~MK4~^~Menaquinone-4~^~1~^~8950~
+~429~^~µg~^~VITK1D~^~Dihydrophylloquinone~^~1~^~8900~
+~430~^~µg~^~VITK1~^~Vitamin K (phylloquinone)~^~1~^~8800~
+11013  Foliumzuur                      ug        Folic acid
+11012  Folaat                          ug        Folates
+11012  Folaat                          ug        Folates
+~454~^~mg~^~BETN~^~Betaine~^~1~^~7270~
+~501~^~g~^~TRP_G~^~Tryptophan~^~3~^~16300~
+~502~^~g~^~THR_G~^~Threonine~^~3~^~16400~
+~503~^~g~^~ILE_G~^~Isoleucine~^~3~^~16500~
+~504~^~g~^~LEU_G~^~Leucine~^~3~^~16600~
+~505~^~g~^~LYS_G~^~Lysine~^~3~^~16700~
+~506~^~g~^~MET_G~^~Methionine~^~3~^~16800~
+~507~^~g~^~CYS_G~^~Cystine~^~3~^~16900~
+~508~^~g~^~PHE_G~^~Phenylalanine~^~3~^~17000~
+~509~^~g~^~TYR_G~^~Tyrosine~^~3~^~17100~
+~510~^~g~^~VAL_G~^~Valine~^~3~^~17200~
+~511~^~g~^~ARG_G~^~Arginine~^~3~^~17300~
+~512~^~g~^~HISTN_G~^~Histidine~^~3~^~17400~
+~513~^~g~^~ALA_G~^~Alanine~^~3~^~17500~
+~514~^~g~^~ASP_G~^~Aspartic acid~^~3~^~17600~
+~515~^~g~^~GLU_G~^~Glutamic acid~^~3~^~17700~
+~516~^~g~^~GLY_G~^~Glycine~^~3~^~17800~
+~517~^~g~^~PRO_G~^~Proline~^~3~^~17900~
+~518~^~g~^~SER_G~^~Serine~^~3~^~18000~
+~521~^~g~^~HYP~^~Hydroxyproline~^~3~^~18100~
+~573~^~mg~^~~^~Vitamin E, added~^~2~^~7920~
+~578~^~µg~^~~^~Vitamin B-12, added~ ^~2~^~7340~
+04001  Cholesterol                     mg        Cholesterol
+03136  Vetzuren totaal trans           g         Fatty acids total trans
+03004  Vetzuren totaal verzadigd       g         Fatty acids total saturated
+03011  C4:0                            %         C4:0
+03012  C6:0                            %         C6:0
+03013  C8:0                            %         C8:0
+03014  C10:0                           %         C10:0
+03017  C12:0                           %         C12:0
+03020  C14:0                           %         C14:0
+03024  C16:0                           %         C16:0
+03029  C18:0                           %         C18:0
+03036  C20:0                           %         C20:0
+!!03030+03031+03032
+03009  Linolzuur (C18:2(n-6)cis)       g         Linoleic acid (C18:2(n-6)cis)
+03140  C18:3 n-3 cis (ALA)             g         C18:3 n-3 cis (ALA)
+!!03040+03090
+03049  C22:6 n-3 cis (DHA)             %         C22:6 n-3 cis (DHA)
+03043  C22:0                           %         C22:0
+03021  C14:1 cis totaal                %         C14:1 cis total
+!!03025+03026
+03089  C18:4 n-3 cis                   %         C18:4 n-3 cis
+!!03037+03058
+03041  C20:5 n-3 cis (EPA)             %         C20:5 n-3 cis (EPA)
+!!03044+03059
+03048  C22:5 n-3 cis                   %         C22:5 n-3 cis
+~636~^~mg~^~PHYSTR~^~Phytosterols~^~0~^~15800~
+~638~^~mg~^~STID7~^~Stigmasterol~^~0~^~15900~
+~639~^~mg~^~CAMD5~^~Campesterol~^~0~^~16000~
+~641~^~mg~^~SITSTR~^~Beta-sitosterol~^~0~^~16200~
+03006  Vetzuren enkelv onverz cis      g         Fatty acids tot mono unsat cis
+03008  Vetzuren meerv onverz           g         Fatty acids total poly unsat
+03023  C15:0                           %         C15:0
+03028  C17:0                           %         C17:0
+03053  C24:0                           %         C24:0
+03026  C16:1 trans totaal              %         C16:1 trans total
+03031  C18:1 trans totaal              %         C18:1 trans total
+03059  C22:1 trans totaal              %         C22:1 trans total
+~665~^~g~^~~^~18:2 t not further defined~^~3~^~13800~
+~666~^~g~^~~^~18:2 i~^~3~^~13700~
+~669~^~g~^~F18D2TT~^~18:2 t,t~^~3~^~13600~
+~670~^~g~^~F18D2CLA~^~18:2 CLAs~^~3~^~13300~
+03054  C24:1 cis totaal                %         C24:1 cis total
+03038  C20:2 n-6 cis                   %         C20:2 n-6 cis
+03025  C16:1 cis totaal                %         C16:1 cis total
+03030  C18:1 cis totaal                %         C18:1 cis total
+03052  C18:2 n-6 cis (linolzuur)       %         C18:2 n-6 cis
+03044  C22:1 cis totaal                %         C22:1 cis total
+03062  C18:3 n-6 cis                   %         C18:3 n-6 cis
+03102  C17:1 cis                       %         C17:1 cis
+~689~^~g~^~F20D3~^~20:3 undifferentiated~^~3~^~14400~
+~693~^~g~^~FATRNM~^~Fatty acids, total trans-monoenoic~^~3~^~15500~
+~695~^~g~^~FATRNP~^~Fatty acids, total trans-polyenoic~^~3~^~15600~
+03019  C13:0                           %         C13:0
+03100  C15:1 cis totaal                %         C15:1 cis
+03140  C18:3 n-3 cis (ALA)             g         C18:3 n-3 cis (ALA)
+03039  C20:3 n-3 cis                   %         C20:3 n-3 cis
+03105  C20:3 n-6 cis                   %         C20:3 n-6 cis
+03040  C20:4 n-6 cis                   %         C20:4 n-6 cis
+03140  C18:3 n-3 cis (ALA)             g         C18:3 n-3 cis (ALA)
+~857~^~g~^~F21D5~^~21:5~^~3~^~15100~
+03047  C22:4 n-6 cis                   %         C22:4 n-6 cis
+03070  C18:1 n-7 trans                 %         C18:1 n-7 trans
