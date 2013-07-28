@@ -1,7 +1,7 @@
 This file contains information about how each field was calculated.
 
 The conversion is mainly about finding the correct values in the NEVO 
-database and setting them in the right field.
+database (NEVO-Online versie 2001_3.0) and setting them in the right field.
 
 NUT uses the same fields as the usda database, which can be found at 
 http://www.ars.usda.gov/SP2UserFiles/Place/12354500/Data/SR25/asc/NUTR_DEF.txt
@@ -12,7 +12,8 @@ The same information can be found in nut.txt and nutlight.txt, but these
 are a bit more cryptic.
 
 nut.txt is meant to be the complete converstion.
-nutlight.txt is meant to be for P/C/F only.
+nutlight.txt is meant to be for P/C/F only. (It was a quick-hack to get started.)
+
 ------------------------------------------------------------------------
 PROCNT - Protein
    02002 - Protein total
@@ -25,93 +26,247 @@ CHOCDF - Carbohydrate, by difference
    06001 - Dietary fibre total
 
    Note: This is partly wrong. Some water-soluable fiber can be
-         converted to fatty acids by gut bacreria. But this information
+         converted to fatty acids by gut bacteria. But this information
          is not available in the dutch database.
 ASH - Ash
    12001 - Ash
 ENERC_KCAL - Energy
    01001 - Energy
 STARCH - Starch
+   05010 - Polysaccharides total
 SUCS - Sucrose
+   05009 - Saccharose
 GLUS - Glucose (dextrose)
+   05003 - Glucose
 FRUS - Fructose
+   05005 - Fructose
 LACS - Lactose
+   05006 - Lactose
 MALS - Maltose
+   05008 - Maltose
 ALC - Alcohol, ethyl
+   08001 - Alcohol total
 WATER - Water
+   07001 - Water
 XXXXX - Adjusted Protein
+   Not available
+   Note: I don't know what this is.
 CAFFN - Caffeine
+   Not available.
 THEBRN - Theobromine
+   Not available.
 ENERC_KJ - Energy
    01002 - Energy
 SUGAR - Sugars, total
+   05002 - Mono and disccharides total
 GALS - Galactose
+   Not available.
 FIBTG - Fiber, total dietary
 CA - Calcium, Ca
+   09001 - Calcium
 FE - Iron, Fe
+   09003 - Iron total
+
+   Note: The dutch datase also contains information about the origin,
+         haem or non-haem. This is not used.
 MG - Magnesium, Mg
+   09008 - Magnesium
 P - Phosphorus, P
+   09003 - Phosphorus
 K - Potassium, K
+   09007 - Potassium
 NA - Sodium, Na
+   09006 - Sodium
 ZN - Zinc, Zn
+   09009 - Zinc
 CU - Copper, Cu
+   10002 - Copper
 FLD - Fluoride, F
+   Not available.
 MN - Manganese, Mn
+   Not available.
 SE - Selenium, Se
+   10001 - Selenium
 VITA_IU - Vitamin A, IU
+   This is the sum of:
+
+   3.33 * 11001 - Retinol
+   1.66 * 11003 - Beta-caroteen
+   0.83 * 11020 - Alpha-catoteen
+   0.83 * 11023 - Beta-cryptoxanthin
+
+   This was verified against (Carrots, Raw) from the USDA database.
+
+   Note: Copied from wikipedia:
+         As some carotenoids can be converted into vitamin A, attempts have been
+         made to determine how much of them in the diet is equivalent to a 
+         particular amount of retinol, so that comparisons can be made of the
+         benefit of different foods. The situation can be confusing because the
+         accepted equivalences have changed. For many years, a system of 
+         equivalencies in which an international unit (IU) was equal to 0.3 ug 
+         of retinol, 0.6 ug of beta-carotene, or 1.2 ug of other provitamin-A 
+         carotenoids was used.[14] Later, a unit called retinol equivalent (RE) 
+         was introduced. Prior to 2001, one RE corresponded to 1 ug retinol, 
+         2 ug beta-carotene dissolved in oil (it is only partly dissolved in most
+         supplement pills, due to very poor solubility in any medium), 6 ug 
+         beta-carotene in normal food (because it is not absorbed as well as when
+         in oils), and 12 ug of either alpha-carotene, gamma-carotene, or 
+         beta-cryptoxanthin in food.
+
+         Newer research has shown that the absorption of provitamin-A 
+         carotenoids is only half as much as previously thought. As a result, 
+         in 2001 the US Institute of Medicine recommended a new unit, the 
+         retinol activity equivalent (RAE). Each ug RAE corresponds to 1 ug 
+         retinol, 2 ug of beta-carotene in oil, 12 ug of "dietary" beta-carotene,
+         or 24 ug of the three other dietary provitamin-A carotenoids.[15]
+
+   Note(2):
+         The dutch database also contains 11002 - Retinol equivalents. This
+         is based on: (in the database of 2001)
+            1 RE =  1 µg retinol
+                 =  6 µg beta-caroteen
+                 = 12 µg andere provitamine A carotenoïden
+         source: http://www.voorlichtingmvo.nl/gfx/file/vitamine060.pdf
+
+         In the report it is mentioned a new calculation of RE is needed,
+         but a check on a couple of products did not indicate that
+         this formule has been changed for the current database.
+
 RETOL - Retinol
+   11001 - Retinol
 VITA_RAE - Vitamin A, RAE
+   11027 - Retinol activiteit equiv.(RAE)
 CARTB - Carotene, beta
+   11003  Beta-caroteen                   ug        Beta-carotene
 CARTA - Carotene, alpha
+   11020 - Alpha-carotene
 TOCPHA - Vitamin E (alpha-tocopherol)
-VITD - Vitamin D
+   11010 - Vitamine E total
+
+   Note: Field 11015 should be used.
+         And added Vitamin E should be calculated from 11010 and 11015
+VITD - Vitamin D (IU)
+   This is a conversion from Vitamin D to IU units:
+
+   40 * (11009 - Vitamin D total)
+
+   Note: Conversion : 1 µg = 40 IU and 0.025 µg = 1 IU
+         Taken from https://en.wikipedia.org/wiki/Vitamin_D (20130728)
 ERGCAL - Vitamin D2 (ergocalciferol)
+   Not available.
 CHOCAL - Vitamin D3 (cholecalciferol)
+   Not available.
 VITD - Vitamin D (D2 + D3)
+   11009 - Vitamin D total
+
+   Note: Unknown if this includes D1,D4 and D5, although this is probably so.
 CRYPX - Cryptoxanthin, beta
+   11023 - Beta-cryptoxanthin
 LYCPN - Lycopene
+   11024 - Lycopene
 LUT+ZEA - Lutein + zeaxanthin
+   This is the sum of:
+
+   11021 - Lutein
+   11022 - Zeaxanthine
 TOCPHB - Tocopherol, beta
+   11016 - Beta tocoferol
 TOCPHG - Tocopherol, gamma
+   11017 - Gamma tocoferol
 TOCPHD - Tocopherol, delta
+   11018 - Delta tocoferol
 VITC - Vitamin C, total ascorbic acid
+   11011 - Vitamin C
 THIA - Thiamin
+   11005 - Vitamin B1
+
+   Note: This is Vitamin B1, 
+         source: https://nl.wikipedia.org/wiki/Thiamine (20130728)
 RIBF - Riboflavin
+   11006 - Vitamin B2
+
+   Note: This is Vitamin B2, 
+         source: https://nl.wikipedia.org/wiki/Riboflavine (20130728)
 NIA - Niacin
+   11014 - Nicotinezuur
+
+   Note: This is Vitamin B3, also know in dutch a Nicotinezuur
 PANTAC - Pantothenic acid
+   Not available.
+   Note: Also known as Vitamin B5
 VITB6A - Vitamin B-6
+   11007 - Vitamin B6 total
 FOL - Folate, total
+   This is the sum of:
+
+   11012 - Folates
+   11013 - Folic acid
+
+   Note: Checked with 1 product on the USDA database.
 VITB12 - Vitamin B-12
+   11008 - Vitamin B12
 CHOLN - Choline, total
 MK4 - Menaquinone-4
+   Not available.
 VITK1D - Dihydrophylloquinone
+   Not available.
 VITK1 - Vitamin K (phylloquinone)
+   Not available.
 FOLAC - Folic acid
+   11013 - Folic acid
 FOLFD - Folate, food
+   11012 - Folates
 FOLDFE - Folate, DFE
+   11028 - Total dietary folate equiv.
+
+   Note: One DFE is defined as 1 ug (microgram) of dietary folate, or 0.6 ug of folic acid supplement.
+         Source: https://en.wikipedia.org/wiki/Folate (20130728)
 BETN - Betaine
+   Not available.
 TRP_G - Tryptophan
+   Not available.
 THR_G - Threonine
+   Not available.
 ILE_G - Isoleucine
+   Not available.
 LEU_G - Leucine
+   Not available.
 LYS_G - Lysine
+   Not available.
 MET_G - Methionine
+   Not available.
 CYS_G - Cystine
+   Not available.
 PHE_G - Phenylalanine
+   Not available.
 TYR_G - Tyrosine
+   Not available.
 VAL_G - Valine
+   Not available.
 ARG_G - Arginine
+   Not available.
 HISTN_G - Histidine
+   Not available.
 ALA_G - Alanine
+   Not available.
 ASP_G - Aspartic acid
+   Not available.
 GLU_G - Glutamic acid
+   Not available.
 GLY_G - Glycine
+   Not available.
 PRO_G - Proline
+   Not available.
 SER_G - Serine
+   Not available.
 HYP - Hydroxyproline
+   Not available.
 XXX - Vitamin E, added
+   Note: Difference of 11010 and 11015??
 XXX - Vitamin B-12, added
+   Not available.
 CHOLE - Cholesterol
+   04001 - Cholesterol
 FATRN - Fatty acids, total trans
 FASAT - Fatty acids, total saturated
 F4D0 - 4:0
@@ -175,3 +330,12 @@ F22D4 - 22:4
 F18D1TN7 - 18:1-11t (18:1t n-7)
 ------------------------------------------------------------------------
 
+
+Unused fields in from the dutch database:
+
+02001  Stikstof totaal                 g         Nitrogen total
+02003  Eiwit plantaardig               g         Protein vegetable
+02004  Eiwit dierlijk                  g         Protein animal
+09004  IJzer haem                      mg        Iron haem
+09005  IJzer non haem                  mg        Iron non haem
+11015  Alfa-tocoferol                  mg        Alpha-tocoferol

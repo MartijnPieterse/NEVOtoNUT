@@ -1,6 +1,6 @@
 02002  Eiwit totaal
 03001  Vet totaal
-!!05001+06001$ CHOCDF is Koolhydraten + Vezels
+!!05001+06001
 12001  As
 01001  Energie
 ~209~^~g~^~STARCH~^~Starch~^~2~^~2200~

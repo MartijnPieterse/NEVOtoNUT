@@ -19,7 +19,7 @@ f.close()
 
 conversion_table = []
 
-f = open("nutlight.txt")
+f = open("nut.txt")
 fdef = open("data/NUTR_DEF.txt") # To verify units are the same.
 
 for l in f.readlines():
@@ -80,23 +80,45 @@ def printFoodRecord(r):
     for t in conversion_table:
         if t == "-0": s += "-0"
         elif t[0] == "!":
-            t = t.split("$")[0]
-            if (t == "!!11021+11022"):
-                # special case for numer 44. (no %)
-                total = 0.0
-                if r["nut"].has_key("11021"): total += float(r["nut"]["11021"])
-                if r["nut"].has_key("11022"): total += float(r["nut"]["11022"])
-
-                if total != 0.0: s += ("%.3f" % (total)).rstrip("0").rstrip(".")
-            else:
+            if t[1] == "1": # Simple addition
                 # All others.
-                calc = t.lstrip("!").split("+")
+                calc = t[3:].split("+")
                 
+                # TODO What if something is not available?
                 total = 0.0
                 for c in calc:
                     if r["nut"].has_key(c): total += float(r["nut"][c])
 
                 if total != 0.0: 
+                    s += ("%.3f" % (total)).rstrip("0").rstrip(".")
+
+            if t[1] == "2": # Simple multiplication
+                calc = t[3:].split("*")
+
+                total = 0.0
+                if r["nut"].has_key(calc[0]): total += float(r["nut"][calc[0]])
+
+                total *= float(calc[1])
+
+                if total != 0.0:
+                    s += ("%.3f" % (total)).rstrip("0").rstrip(".")
+
+            if t[1] == "3": # multiple multiply/add
+                calc = t[3:].split("+")
+
+                total = 0.0
+                for c in calc:
+                    nut_key = c.split("*")[0]
+                    multiply = float(c.split("*")[1])
+                    n = 0.0
+                    if r["nut"].has_key(nut_key): n = float(r["nut"][nut_key])
+
+                    total += n * multiply
+
+                print r["Product_omschrijving"], "VitA_IU", total
+
+
+                if total != 0.0:
                     s += ("%.3f" % (total)).rstrip("0").rstrip(".")
 
 
