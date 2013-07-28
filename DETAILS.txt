@@ -20,7 +20,8 @@ desired g value. A "%" is added after the code to show this.
 
 
 nut adds a couple of fields.
-1, Code
+1, Code (this is the Nevo Productgroepcode + 50000)
+   The 50000 range was still unused in sr25.nut
 2, Groep Code
 3, Text description. Must be in uppercase.
 4, Scienticif name (not used in this conversion)
@@ -290,7 +291,8 @@ SER_G - Serine
 HYP - Hydroxyproline
    Not available.
 XXX - Vitamin E, added
-   Note: Could be the difference of 11010 (Vitamin E total) 
+   Not available.
+   Note: Might be the difference of 11010 (Vitamin E total) 
          and 11015 (Alpha-tocoferol)
 XXX - Vitamin B-12, added
    Not available.

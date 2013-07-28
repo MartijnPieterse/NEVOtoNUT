@@ -58,8 +58,11 @@ def printFoodRecord(r):
     s = ""
     s += repr(int(r["Productcode"])+50000) + "^"
     s += r["Productgroepcode"] + "^"
+
+    # Alway add NEVO, to make it easier to know what is dutch
+    s += "NEVO,"
     if len(r["Fabrikantnaam"]) != 0:
-        s += r["Fabrikantnaam"] + ","
+        s += r["Fabrikantnaam"].upper() + ","
     s += r["Productgroep-oms"].upper() + "," + r["Product_omschrijving"].upper() + "^"
 
     s += "^"    # Skip scientific name
@@ -125,7 +128,7 @@ def printFoodRecord(r):
                 if r["nut"].has_key(nut_key):
                     perc = float(r["nut"][nut_key])
 
-                    total = perc * float(r["nut"]["03002"])
+                    total = 0.01 * perc * float(r["nut"]["03002"])
 
                 if total != 0.0:
                     s += ("%.3f" % (total)).rstrip("0").rstrip(".")
@@ -139,7 +142,7 @@ def printFoodRecord(r):
                     if r["nut"].has_key(c): perc += float(r["nut"][c])
 
                 if perc != 0.0: 
-                    total = perc * float(r["nut"]["03002"])
+                    total = 0.01 * perc * float(r["nut"]["03002"])
                     s += ("%.3f" % (total)).rstrip("0").rstrip(".")
 
 
@@ -149,6 +152,7 @@ def printFoodRecord(r):
                 pass
             else:
                 if nutrient_list[t]["unit"] == "%":
+                    raise "Must do this explicit!"
                     if r["nut"].has_key("03002"):
                         g = float(r["nut"]["03002"]) * float(r["nut"][t]) * 0.01
                         s += ("%.3f" % (g)).rstrip("0").rstrip(".")
