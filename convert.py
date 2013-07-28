@@ -4,7 +4,7 @@
 
 nutrient_list = {}
 
-f = open("Nevo-Nutrienten_Lijst_Online versie 2011_3.0.txt")
+f = open("data/Nevo-Nutrienten_Lijst_Online versie 2011_3.0.txt")
 
 for l in f.readlines():
     code = l[0:5]
@@ -20,7 +20,7 @@ f.close()
 conversion_table = []
 
 f = open("nutlight.txt")
-fdef = open("NUTR_DEF.txt") # To verify units are the same.
+fdef = open("data/NUTR_DEF.txt") # To verify units are the same.
 
 for l in f.readlines():
 
@@ -45,7 +45,7 @@ for l in f.readlines():
 
 f.close()
 
-f = open("Nevo-Online versie 2011_3.0.dat")
+f = open("data/Nevo-Online versie 2011_3.0.dat")
 #f = open("/tmp/30.dat")
 
 l = f.readline().strip()
@@ -97,8 +97,7 @@ def printFoodRecord(r):
                     if r["nut"].has_key(c): total += float(r["nut"][c])
 
                 if total != 0.0: 
-                    g = float(r["nut"]["03002"]) * total * 0.01
-                    s += ("%.3f" % (g)).rstrip("0").rstrip(".")
+                    s += ("%.3f" % (total)).rstrip("0").rstrip(".")
 
 
         elif r["nut"].has_key(t):

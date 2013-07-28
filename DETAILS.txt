@@ -5,12 +5,32 @@ database and setting them in the right field.
 
 NUT uses the same fields as the usda database, which can be found at 
 http://www.ars.usda.gov/SP2UserFiles/Place/12354500/Data/SR25/asc/NUTR_DEF.txt
+(Some fields did not have a field name, i used XXXX in that case to keep it 
+ readable)
 
+The same information can be found in nut.txt and nutlight.txt, but these
+are a bit more cryptic.
+
+nut.txt is meant to be the complete converstion.
+nutlight.txt is meant to be for P/C/F only.
+------------------------------------------------------------------------
 PROCNT - Protein
+   02002 - Protein total
 FAT - Total lipid (fat)
+   03001 - Fat total
 CHOCDF - Carbohydrate, by difference
+   This is the sum of:
+
+   05001 - Carbohydrates total
+   06001 - Dietary fibre total
+
+   Note: This is partly wrong. Some water-soluable fiber can be
+         converted to fatty acids by gut bacreria. But this information
+         is not available in the dutch database.
 ASH - Ash
+   12001 - Ash
 ENERC_KCAL - Energy
+   01001 - Energy
 STARCH - Starch
 SUCS - Sucrose
 GLUS - Glucose (dextrose)
@@ -19,10 +39,11 @@ LACS - Lactose
 MALS - Maltose
 ALC - Alcohol, ethyl
 WATER - Water
-      - Adjusted Protein
+XXXXX - Adjusted Protein
 CAFFN - Caffeine
 THEBRN - Theobromine
 ENERC_KJ - Energy
+   01002 - Energy
 SUGAR - Sugars, total
 GALS - Galactose
 FIBTG - Fiber, total dietary
@@ -88,8 +109,8 @@ GLY_G - Glycine
 PRO_G - Proline
 SER_G - Serine
 HYP - Hydroxyproline
-    - Vitamin E, added
-    - Vitamin B-12, added
+XXX - Vitamin E, added
+XXX - Vitamin B-12, added
 CHOLE - Cholesterol
 FATRN - Fatty acids, total trans
 FASAT - Fatty acids, total saturated
@@ -126,9 +147,9 @@ F17D0 - 17:0
 F24D0 - 24:0
 F16D1T - 16:1 t
 F18D1T - 18:1 t
-       - 22:1 t
-       - 18:2 t not further defined
-       - 18:2 i
+XXXXXX - 22:1 t
+XXXXXX - 18:2 t not further defined
+XXXXXX - 18:2 i
 F18D2TT - 18:2 t,t
 F18D2CLA - 18:2 CLAs
 F24D1C - 24:1 c
@@ -136,7 +157,7 @@ F20D2CN6 - 20:2 n-6 c,c
 F16D1C - 16:1 c
 F18D1C - 18:1 c
 F18D2CN6 - 18:2 n-6 c,c
-         - 22:1 c - 3
+XXXXXXXX - 22:1 c - 3
 F18D3CN6 - 18:3 n-6 c,c,c
 F17D1 - 17:1
 F20D3 - 20:3 undifferentiated
@@ -148,8 +169,9 @@ F18D3CN3 - 18:3 n-3 c,c,c (ALA)
 F20D3N3 - 20:3 n-3
 F20D3N6 - 20:3 n-6
 F20D4N6 - 20:4 n-6
-        - 18:3i
+XXXXXXX - 18:3i
 F21D5 - 21:5
 F22D4 - 22:4
 F18D1TN7 - 18:1-11t (18:1t n-7)
+------------------------------------------------------------------------
 
