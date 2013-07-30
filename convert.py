@@ -60,11 +60,71 @@ def printFoodRecord(r):
     s += r["Productgroepcode"] + "^"
 
     # Alway add NEVO, to make it easier to know what is dutch
-    s += "NEVO,"
-    if len(r["Fabrikantnaam"]) != 0:
-        s += r["Fabrikantnaam"].upper() + ","
-    s += r["Productgroep-oms"].upper() + "," + r["Product_omschrijving"].upper() + "^"
+    name = "NEVO,"
+#    if len(r["Fabrikantnaam"]) != 0:
+#        name += r["Fabrikantnaam"].upper() + ","
+    name += r["Productgroep-oms"].upper() + "," + r["Product_omschrijving"].upper()
 
+    name_orig = name
+
+    # Replace some names.
+    name = name.replace(", ", ",")
+    name = name.replace("VLEES,VLEESWAREN EN GEVOGELTE", "VLEES/GEVOGELTE", 1)
+    name = name.replace("VETTEN,OLIÎN EN HARTIGE SAUZEN", "VET/OLIE/SAUS", 1)
+    name = name.replace("ALCOHOLISCHE EN NIET-ALCOHOLISCHE DRANKEN", "DRANKEN", 1)
+    name = name.replace("SOJAPRODUCTEN EN VEGETARISCHE PRODUCTEN", "SOJA EN VEGAPROD", 1)
+    name = name.replace("SNOEP,ZOET BELEG EN ZOETE SAUZEN,", "", 1)
+    name = name.replace("GRAANPRODUCTEN EN BINDMIDDELEN", "GRAANPROD EN BINDM", 1)
+    name = name.replace("SAMENGESTELDE GERECHTEN", "MAALTIJD", 1)
+    name = name.replace("ONGEZOUTEN", "ONGEZ.", 1);
+    name = name.replace("VET ONGEBONDEN BEREID", "VET ONGEB. BEREID", 1)
+    name = name.replace("VET GEBONDEN BEREID", "VET GEB. BEREID", 1)
+    name = name.replace("CHOCOLADE MELK-", "MELKCHOCOLADE", 1)
+    name = name.replace("TAART APPEL-", "APPELTAART", 1)
+    name = name.replace(" EXCL ", " EX ", 1)
+    name = name.replace(",ONTBIJTPRODUCT ", ",", 1)
+    name = name.replace(",ONTBIJTPROD ", ",", 1)
+    name = name.replace("BAK- EN BRAADVET","BAK/BRAADVET", 1)
+    name = name.replace("MELK EN MELKPRODUCTEN", "MELKPRODUCTEN", 1)
+    name = name.replace("BEREID Z VET BEREID Z VET", "BEREID Z VET", 1)
+    name = name.replace("WORSTJES M ITALIAANSE KRUIDEN", "WORSTJES M ITA. KRUIDEN", 1)
+    name = name.replace(",GEBAK EN KOEK,", ",GEBAK/KOEK,", 1)
+    name = name.replace("VRUCHTENDRANK APPELSIENTJE VITAMIENTJE BOSVRUCHTEN", "APPELSIENTJE VITAMIENTJE BOSVRUCHTEN", 1)
+    name = name.replace(" ONBEREID", " ONBER", 1)
+    name = name.replace("YOGHURT MAGERE M VRUCHTEN/VANILLE M ZOETST", "MAGERE YOGHURT VRUCHTEN/VANILLE M ZOETST", 1)
+    name = name.replace("MARGARINEPRODUCT 70%", "MARGARINE 70%", 1)
+    name = name.replace("SAUS WARM", "SAUS ", 1)
+    name = name.replace("SAP VRUCHTEN- APPELSIENTJE VITAMIENTJE ORANJE VR", "APPELSIENTJE VITAMIENTJE ORANJE VRUCHTEN", 1)
+
+
+    # These last ones.. just do manually.
+    name = name.replace("NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 2-<5 G KH M CAFEINE", "NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 2-<5 G KH CAFEINE", 1)
+    name = name.replace("NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 5-<8 G KH M CAFEINE", "NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 5-<8 G KH CAFEINE", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,BAK/BRAADVET VLOEIB 97% VET <17G VERZ VETZ", "NEVO,VET/OLIE/SAUS,BAK/BRAAD VLOEIB 97% VET <17G VERZ VETZ", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,SAUS CHINESE ZOETZURE HUISHOUDELIJK BEREID", "NEVO,VET/OLIE/SAUS,SAUS CHINESE ZOETZURE THUIS BEREID", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,SAUS OP BASIS GROENTENAT/MELK BEREID Z VET", "NEVO,VET/OLIE/SAUS,SAUS OP BASIS GROENTENAT/MELK Z VET", 1)
+    name = name.replace("NEVO,NOTEN,ZADEN EN SNACKS,KIKKERWTEN GEROOSTERD LEBLEBI TURKS", "NEVO,NOTEN,ZADEN EN SNACKS,KIKKERWTEN GEROOSTERD LEBLEBI", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,DRESSING/SAUS FRITES-/SAUS SLA- CA 13% OLIE", "NEVO,VET/OLIE/SAUS,DRESSING/FRISTESSAUS/SLASAUS CA 13% OLIE", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 20-25% VET <10 G VERZ VETZ", "NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 20-25% VET <10 G VERZ", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,MARGARINE VLOEIBAAR 80% VET <17 G VERZ VETZ", "NEVO,VET/OLIE/SAUS,MARGARINE VLOEIBAAR 80% VET <17 G VERZ", 1)
+    name = name.replace("NEVO,AARDAPPELEN,AARDAPPELPUREE INSTANT BEREID M HALFVOLLE MELK", "NEVO,AARDAPPELEN,AARDAPPELPUREE INSTANT BEREID M HALFV MELK", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,MARGARINE VLB 80% VET< 17 G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,MARGARINE VLB 80% VET< 17 G VERZ VETZ ZZ", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,SAUS SATE- HUISHOUDELIJK BEREID M WATER M VET", "NEVO,VET/OLIE/SAUS,SATESAUS THUIS BEREID M WATER M VET", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,BAK/BRAADVET VLB 97% VET <17G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,BAK/BRAADVET 97% VET <17G VERZ VETZ ZZ", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 35% VET <10G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 35% VET <10G VERZ ZZ", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT BECEL PRO-ACTIV CALORIE LIGHT", "NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT BECEL PRO-ACTIV LIGHT", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,MARGARINEPRODUCT 60% VET <17 G VERZ VETZ ONGEZ", "NEVO,VET/OLIE/SAUS,MARGARINEPRODUCT 60% VET <17 G VERZ ZZ", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,FRITUURVET VAST >24 G VERZ VETZ <10 G TRANSVETZ", "NEVO,VET/OLIE/SAUS,FRITUURVET >24 G VERZ VETZ <10 G TRANSVET", 1)
+    name = name.replace("NEVO,VET/OLIE/SAUS,BAK/BRAADVET VAST 97% VET > 17G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,BAK/BRAADVET VAST 97% VET > 17G VERZ", 1)
+
+
+    if len(name) > 60: 
+        print "X", len(name), name
+        raise "Too long!"
+
+#    print "T", name_orig, "!", name
+
+    s += name + "^"
     s += "^"    # Skip scientific name
 
     if (r["Eetbaar_gedeelte"] == "1"):
