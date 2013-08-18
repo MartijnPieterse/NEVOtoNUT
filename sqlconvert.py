@@ -2,6 +2,9 @@
 # -*- coding: iso-8859-15 -*-
 
 
+# Food id 50000+
+# food group 5000+
+
 nutrient_list = {}
 
 f = open("../Nevo/Nevo-Nutrienten_Lijst_Online versie 2011_3.0.txt")
@@ -60,67 +63,16 @@ def printFoodRecord(r):
     s += r["Productgroepcode"] + "^"
 
     # Alway add NEVO, to make it easier to know what is dutch
-    name = "NEVO,"
+    name = ""
 #    if len(r["Fabrikantnaam"]) != 0:
 #        name += r["Fabrikantnaam"].upper() + ","
-    name += r["Productgroep-oms"].upper() + "," + r["Product_omschrijving"].upper()
+    name += r["Product_omschrijving"]
 
     name_orig = name
 
     # Replace some names.
-    name = name.replace(", ", ",")
-    name = name.replace("VLEES,VLEESWAREN EN GEVOGELTE", "VLEES/GEVOGELTE", 1)
-    name = name.replace("VETTEN,OLIëN EN HARTIGE SAUZEN", "VET/OLIE/SAUS", 1)
-    name = name.replace("ALCOHOLISCHE EN NIET-ALCOHOLISCHE DRANKEN", "DRANKEN", 1)
-    name = name.replace("SOJAPRODUCTEN EN VEGETARISCHE PRODUCTEN", "SOJA EN VEGAPROD", 1)
-    name = name.replace("SNOEP,ZOET BELEG EN ZOETE SAUZEN,", "", 1)
-    name = name.replace("GRAANPRODUCTEN EN BINDMIDDELEN", "GRAANPROD EN BINDM", 1)
-    name = name.replace("SAMENGESTELDE GERECHTEN", "MAALTIJD", 1)
-    name = name.replace("ONGEZOUTEN", "ONGEZ.", 1);
-    name = name.replace("VET ONGEBONDEN BEREID", "VET ONGEB. BEREID", 1)
-    name = name.replace("VET GEBONDEN BEREID", "VET GEB. BEREID", 1)
-    name = name.replace("CHOCOLADE MELK-", "MELKCHOCOLADE", 1)
-    name = name.replace("TAART APPEL-", "APPELTAART", 1)
-    name = name.replace(" EXCL ", " EX ", 1)
-    name = name.replace(",ONTBIJTPRODUCT ", ",", 1)
-    name = name.replace(",ONTBIJTPROD ", ",", 1)
-    name = name.replace("BAK- EN BRAADVET","BAK/BRAADVET", 1)
-    name = name.replace("MELK EN MELKPRODUCTEN", "MELKPRODUCTEN", 1)
-    name = name.replace("BEREID Z VET BEREID Z VET", "BEREID Z VET", 1)
-    name = name.replace("WORSTJES M ITALIAANSE KRUIDEN", "WORSTJES M ITA. KRUIDEN", 1)
-    name = name.replace(",GEBAK EN KOEK,", ",GEBAK/KOEK,", 1)
-    name = name.replace("VRUCHTENDRANK APPELSIENTJE VITAMIENTJE BOSVRUCHTEN", "APPELSIENTJE VITAMIENTJE BOSVRUCHTEN", 1)
-    name = name.replace(" ONBEREID", " ONBER", 1)
-    name = name.replace("YOGHURT MAGERE M VRUCHTEN/VANILLE M ZOETST", "MAGERE YOGHURT VRUCHTEN/VANILLE M ZOETST", 1)
-    name = name.replace("MARGARINEPRODUCT 70%", "MARGARINE 70%", 1)
-    name = name.replace("SAUS WARM", "SAUS ", 1)
-    name = name.replace("SAP VRUCHTEN- APPELSIENTJE VITAMIENTJE ORANJE VR", "APPELSIENTJE VITAMIENTJE ORANJE VRUCHTEN", 1)
+    name = name.replace("ë", "e", 1)
 
-
-    # These last ones.. just do manually.
-    name = name.replace("NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 2-<5 G KH M CAFEINE", "NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 2-<5 G KH CAFEINE", 1)
-    name = name.replace("NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 5-<8 G KH M CAFEINE", "NEVO,DRANKEN,FRISDRANK M SUIKER EN ZOETST 5-<8 G KH CAFEINE", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,BAK/BRAADVET VLOEIB 97% VET <17G VERZ VETZ", "NEVO,VET/OLIE/SAUS,BAK/BRAAD VLOEIB 97% VET <17G VERZ VETZ", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,SAUS CHINESE ZOETZURE HUISHOUDELIJK BEREID", "NEVO,VET/OLIE/SAUS,SAUS CHINESE ZOETZURE THUIS BEREID", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,SAUS OP BASIS GROENTENAT/MELK BEREID Z VET", "NEVO,VET/OLIE/SAUS,SAUS OP BASIS GROENTENAT/MELK Z VET", 1)
-    name = name.replace("NEVO,NOTEN,ZADEN EN SNACKS,KIKKERWTEN GEROOSTERD LEBLEBI TURKS", "NEVO,NOTEN,ZADEN EN SNACKS,KIKKERWTEN GEROOSTERD LEBLEBI", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,DRESSING/SAUS FRITES-/SAUS SLA- CA 13% OLIE", "NEVO,VET/OLIE/SAUS,DRESSING/FRISTESSAUS/SLASAUS CA 13% OLIE", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 20-25% VET <10 G VERZ VETZ", "NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 20-25% VET <10 G VERZ", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,MARGARINE VLOEIBAAR 80% VET <17 G VERZ VETZ", "NEVO,VET/OLIE/SAUS,MARGARINE VLOEIBAAR 80% VET <17 G VERZ", 1)
-    name = name.replace("NEVO,AARDAPPELEN,AARDAPPELPUREE INSTANT BEREID M HALFVOLLE MELK", "NEVO,AARDAPPELEN,AARDAPPELPUREE INSTANT BEREID M HALFV MELK", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,MARGARINE VLB 80% VET< 17 G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,MARGARINE VLB 80% VET< 17 G VERZ VETZ ZZ", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,SAUS SATE- HUISHOUDELIJK BEREID M WATER M VET", "NEVO,VET/OLIE/SAUS,SATESAUS THUIS BEREID M WATER M VET", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,BAK/BRAADVET VLB 97% VET <17G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,BAK/BRAADVET 97% VET <17G VERZ VETZ ZZ", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 35% VET <10G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT 35% VET <10G VERZ ZZ", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT BECEL PRO-ACTIV CALORIE LIGHT", "NEVO,VET/OLIE/SAUS,HALVARINEPRODUCT BECEL PRO-ACTIV LIGHT", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,MARGARINEPRODUCT 60% VET <17 G VERZ VETZ ONGEZ", "NEVO,VET/OLIE/SAUS,MARGARINEPRODUCT 60% VET <17 G VERZ ZZ", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,FRITUURVET VAST >24 G VERZ VETZ <10 G TRANSVETZ", "NEVO,VET/OLIE/SAUS,FRITUURVET >24 G VERZ VETZ <10 G TRANSVET", 1)
-    name = name.replace("NEVO,VET/OLIE/SAUS,BAK/BRAADVET VAST 97% VET > 17G VERZ VETZ ONGEZ.", "NEVO,VET/OLIE/SAUS,BAK/BRAADVET VAST 97% VET > 17G VERZ", 1)
-
-
-    if len(name) > 60: 
-        print "X", len(name), name
-        raise "Too long!"
 
 #    print "T", name_orig, "!", name
 
@@ -225,7 +177,33 @@ def printFoodRecord(r):
 
     # Last 3 fields. Now just 1 serving == 100g
     s += "1^100g^100"
+
     print s
+
+
+    sql = "INSERT INTO food_des (NDB_No, FdGrp_Cd, Long_Desc, Shrt_Desc, Refuse, PROCNT, FAT, CHOCDF, ASH, ENERC_KCAL, STARCH, SUCS, GLUS, FRUS, LACS, MALS, ALC, WATER, ADPROT, CAFFN, THEBRN, ENERC_KJ, SUGAR, GALS, FIBTG, CA, FE, MG, P, K, NA, ZN, CU, FLD, MN, SE, VITA_IU, RETOL, VITA_RAE, CARTB, CARTA, TOCPHA, VITD, ERGCAL, CHOCAL, VITD_BOTH, CRYPX, LYCPN, LUT_ZEA, TOCPHB, TOCPHG, TOCPHD, VITC, THIA, RIBF, NIA, PANTAC, VITB6A, FOL, VITB12, CHOLN, MK4, VITK1D, VITK1, FOLAC, FOLFD, FOLDFE, BETN, TRP_G, THR_G, ILE_G, LEU_G, LYS_G, MET_G, CYS_G, PHE_G, TYR_G, VAL_G, ARG_G, HISTN_G, ALA_G, ASP_G, GLU_G, GLY_G, PRO_G, SER_G, HYP, VITE_ADDED, VITB12_ADDED, CHOLE, FATRN, FASAT, F4D0, F6D0, F8D0, F10D0, F12D0, F14D0, F16D0, F18D0, F20D0, F18D1, F18D2, F18D3, F20D4, F22D6, F22D0, F14D1, F16D1, F18D4, F20D1, F20D5, F22D1, F22D5, PHYSTR, STID7, CAMD5, SITSTR, FAMS, FAPU, F15D0, F17D0, F24D0, F16D1T, F18D1T, F22D1T, F18D2T, F18D2I, F18D2TT, F18D2CLA, F24D1C, F20D2CN6, F16D1C, F18D1C, F18D2CN6, F22D1C, F18D3CN6, F17D1, F20D3, FATRNM, FATRNP, F13D0, F15D1, F18D3CN3, F20D3N3, F20D3N6, F20D4N6, F18D3I, F21D5, F22D4, F18D1TN7)"
+    sql += " VALUES ("
+
+    fields = s.split("^")
+    sql += fields[0] + ","
+    sql += repr(int(fields[1])+5000) + ","
+    sql += "\""+fields[2]+"\"" + ","
+    sql += "\""+fields[2]+"\"" + ","
+
+    if len(fields[4]) == 0: sql += "NULL,"
+    else: sql += fields[4] + ","
+    for i in range(8, 146+8):
+        if fields[i] == "-0": sql += "NULL,"
+        elif fields[i] == "": sql += "0,"
+        else: sql += fields[i] + ","
+            
+    sql = sql.rstrip(",") + ")"
+    print sql
+
+    sql = "INSERT INTO weight( NDB_No, Seq, Amount, Msre_Desc, whectograms, origSeq, origAmount, orighectograms) VALUES ("
+    sql += fields[0] + ","
+    sql += "99,100.0,\"grams\",1.0,99,100.0,1.0)"
+    print sql
 
 
 foodrecord = None
