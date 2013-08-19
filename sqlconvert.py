@@ -7,7 +7,9 @@
 
 nutrient_list = {}
 
-f = open("../Nevo/Nevo-Nutrienten_Lijst_Online versie 2011_3.0.txt")
+BASEDIR = "data/"
+
+f = open(BASEDIR + "Nevo-Nutrienten_Lijst_Online versie 2011_3.0.txt")
 
 for l in f.readlines():
     code = l[0:5]
@@ -23,7 +25,7 @@ f.close()
 conversion_table = []
 
 f = open("nut.txt")
-fdef = open("NUTR_DEF.txt") # To verify units are the same.
+fdef = open(BASEDIR + "NUTR_DEF.txt") # To verify units are the same.
 
 for l in f.readlines():
 
@@ -48,7 +50,7 @@ for l in f.readlines():
 
 f.close()
 
-f = open("../Nevo/Nevo-Online versie 2011_3.0.dat")
+f = open(BASEDIR + "Nevo-Online versie 2011_3.0.dat")
 #f = open("/tmp/30.dat")
 
 l = f.readline().strip()
@@ -197,12 +199,12 @@ def printFoodRecord(r):
         elif fields[i] == "": sql += "0,"
         else: sql += fields[i] + ","
             
-    sql = sql.rstrip(",") + ")"
+    sql = sql.rstrip(",") + ");"
     print sql
 
     sql = "INSERT INTO weight( NDB_No, Seq, Amount, Msre_Desc, whectograms, origSeq, origAmount, orighectograms) VALUES ("
     sql += fields[0] + ","
-    sql += "99,100.0,\"grams\",1.0,99,100.0,1.0)"
+    sql += "99,100.0,\"grams\",1.0,99,100.0,1.0);"
     print sql
 
 
